@@ -7,9 +7,10 @@ interface Item {
 }
 interface ItemListProps {
   items: Item[];
+  onDeleteItem: (id: string) => void;
 }
 
-const ItemList: React.FC<ItemListProps> = ({ items }) => {
+const ItemList: React.FC<ItemListProps> = ({ items, onDeleteItem }) => {
   return (
     <>
       {items.map((item, index) => (
@@ -23,6 +24,14 @@ const ItemList: React.FC<ItemListProps> = ({ items }) => {
           <div className="card-body">
             <h2 className="card-title">{item.name}</h2>
             <p>Quantity: {item.quantity}</p>
+            <div className="card-actions w-full">
+              <button
+                className="btn btn-error w-full"
+                onClick={() => onDeleteItem(item._id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </div>
       ))}

@@ -42,6 +42,21 @@ function Product() {
       });
   };
 
+  const handleDelete = (id) => {
+    // Send a Delete request to delete an item by id
+    fetch("http://localhost:3000/items/delete/" + id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const newItems = items.filter((item) => item._id !== id);
+        setItems(newItems);
+      });
+  };
+
   const handleChecked = () => {
     if (isChecked === "checked") {
       setIsChecked("");
@@ -85,7 +100,7 @@ function Product() {
         {isLoading ? (
           <div>Products are loading....</div>
         ) : (
-          <ItemList items={items} />
+          <ItemList items={items} onDeleteItem={handleDelete} />
         )}
       </div>
     </div>
