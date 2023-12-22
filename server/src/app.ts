@@ -15,8 +15,6 @@ app.options("*", cors());
 const port = process.env.PORT || 3000;
 
 // MongoDB connection
-// mongoose.connect('mongodb+srv://junaidtariq48:GUzJzrFnbjBiecwj@bahrain-cluster.ku3xild.mongodb.net/?retryWrites=true&w=majority');
-
 if (process.env.DB_URL && process.env.DB_NAME) {
   mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
 } else {
