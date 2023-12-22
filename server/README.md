@@ -76,3 +76,11 @@ npm run dev
 | `id`      | `string` | **Required**.  |
 
 
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```
