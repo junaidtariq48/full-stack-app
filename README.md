@@ -53,3 +53,5 @@ run the docker command to build container and run the application.
 ```bash
 docker-compose -f docker-compose-full.yml up --build
 ```
+
+Once docker build successfull then application should be running on `http://localhost:4000/`
