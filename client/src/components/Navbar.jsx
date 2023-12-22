@@ -32,8 +32,10 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost text-xl">
-            Full Stack
+          <Link to="/" className=" text-xl font-bold">
+            <div>
+              Stack<small className="text-sm">.io</small>
+            </div>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

@@ -1,23 +1,23 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import morgan from 'morgan';
-import itemRoutes from './routes/itemRoutes';
+import express from "express";
+import mongoose from "mongoose";
+import bodyParser from "body-parser";
+// import morgan from "morgan";
+import itemRoutes from "./routes/itemRoutes";
 
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
-const config = require('../config.js')
+const config = require("../config.js");
 
 // Use cors middleware
 app.use(cors());
-app.options('*', cors());
+app.options("*", cors());
 
 const port = process.env.PORT || 3000;
 
 // MongoDB connection
 // mongoose.connect('mongodb+srv://junaidtariq48:GUzJzrFnbjBiecwj@bahrain-cluster.ku3xild.mongodb.net/?retryWrites=true&w=majority');
 
-if(process.env.DB_URL && process.env.DB_NAME){
+if (process.env.DB_URL && process.env.DB_NAME) {
   mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
 } else {
   console.error("env variables not defined");
@@ -25,10 +25,10 @@ if(process.env.DB_URL && process.env.DB_NAME){
 
 // Middleware
 app.use(bodyParser.json());
-app.use(morgan('dev'));
+// app.use(morgan("dev"));
 
 // API Routes
-app.use('/items', itemRoutes);
+app.use("/items", itemRoutes);
 
 // Start the server
 app.listen(port, () => {
