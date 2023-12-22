@@ -28,7 +28,7 @@ function Product() {
 
   const handleAddItem = (item) => {
     // Send a POST request to add a new item
-    fetch("http://localhost:3000/items/add", {
+    fetch("http://localhost:3000/items", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ function Product() {
 
   const handleDelete = (id) => {
     // Send a Delete request to delete an item by id
-    fetch("http://localhost:3000/items/delete/" + id, {
+    fetch("http://localhost:3000/items/" + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
