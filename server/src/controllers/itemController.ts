@@ -31,7 +31,7 @@ class ItemController {
       });
 
       if (result.deletedCount === 1) {
-        res.status(201).json({ message: "Item deleted successfully." });
+        res.status(200).json({ message: "Item deleted successfully." });
       } else {
         res.status(404).json({ error: "Item not found." });
       }
