@@ -1,0 +1,48 @@
+version: "3"
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    volumes:
+      - ~/mongo:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - full-stack-network
+
+  client:
+    container_name: react-client
+    build: ./client
+    expose:
+        - 4000   
+    ports:
+        - 4000:4000
+    volumes:
+        - ./client/src:/srv/app/client/src
+        - ./client/public:/srv/app/client/public
+    stdin_open: true
+    command: npm run start
+
+  server:
+    container_name: node-server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: always
+    expose:
+        - 3000
+    ports:
+        - 3000:3000
+    volumes:
+        - ./server/src:/srv/app/admin-server/src
+    links:
+        - mongodb
+    depends_on:
+        - mongodb    
+    networks:
+        - full-stack-network
+    command: dev
+
+networks:
+  full-stack-network:
+    driver: bridge
