@@ -6,6 +6,7 @@ function Product() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isChecked, setIsChecked] = useState("");
+  const url = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     // Fetch items from the API on mount
@@ -14,7 +15,7 @@ function Product() {
 
   const fetchItems = () => {
     setIsLoading(true);
-    fetch("http://localhost:3000/items")
+    fetch(`${url}items`)
       .then((response) => response.json())
       .then((data) => {
         setItems(data);
@@ -28,7 +29,7 @@ function Product() {
 
   const handleAddItem = (item) => {
     // Send a POST request to add a new item
-    fetch("http://localhost:3000/items", {
+    fetch(`${url}items`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +45,8 @@ function Product() {
 
   const handleDelete = (id) => {
     // Send a Delete request to delete an item by id
-    fetch("http://localhost:3000/items/" + id, {
+
+    fetch(`${url}items/` + id, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

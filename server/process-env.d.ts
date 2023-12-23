@@ -7,7 +7,6 @@ declare global {
       PORT: string;
       DB_URL: string | undefined;
       DB_NAME: string | undefined;
-      API_URL: string | undefined;
     }
   }
 }
