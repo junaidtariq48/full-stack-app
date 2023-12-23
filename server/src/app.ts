@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 // import morgan from "morgan";
 import itemRoutes from "./routes/itemRoutes";
+import path from "path";
 
 const cors = require("cors");
 const app = express();
@@ -27,6 +28,17 @@ app.use(bodyParser.json());
 
 // API Routes
 app.use("/items", itemRoutes);
+
+// Serve frontend
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/dist")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "../", "client", "dist", "index.html"))
+  );
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 
 // Start the server
 app.listen(port, () => {
